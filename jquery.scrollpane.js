@@ -12,21 +12,25 @@
         opts = $.extend({
             idleOpacity: '0'
         }, opts || {});
-        return this.each(function () {
+
+        return this.each(function() {
             var $pane = $(this),
-                    data = $pane.data('scrollpane');
+                data = $pane.data('scrollpane');
+
             if (!data) {
                 data = init();
             }
+
             var scrollbar = data.scrollbar,
-                    content = data.content,
-                    track = data.track,
-                    drag = data.drag,
-                    contentHeight = content.outerHeight(),
-                    height = $pane.height(),
-                    offset = $pane.offset(),
-                    ratio = height / contentHeight,
-                    ie7 = $.browser.msie && $.browser.version.charAt(0) === '7';
+                content = data.content,
+                track = data.track,
+                drag = data.drag,
+                contentHeight = content.outerHeight(),
+                height = $pane.height(),
+                offset = $pane.offset(),
+                ratio = height / contentHeight,
+                ie7 = $.browser.msie && $.browser.version.charAt(0) === '7';
+            
             if (ie7) {
                 $pane.height($pane.parent().height());
                 $pane.css({
@@ -63,10 +67,11 @@
 
             function init() {
                 var barWidth = calcScrollbarWidth(),
-                        scrollbarHTML = '<div class="scrollbar-container" style="width:' + barWidth + 'px;display:none;">' + '<div class="scrollbar-track"><div class="scrollbar-drag">' + '</div></div></div>',
-                        scrollbar = $(scrollbarHTML),
-                        content = $('<div class="scrollpane-content"></div>'),
-                        drag = $('.scrollbar-drag', scrollbar);
+                    scrollbarHTML = '<div class="scrollbar-container" style="width:' + barWidth + 'px;display:none;">' + '<div class="scrollbar-track"><div class="scrollbar-drag">' + '</div></div></div>',
+                    scrollbar = $(scrollbarHTML),
+                    content = $('<div class="scrollpane-content"></div>'),
+                    drag = $('.scrollbar-drag', scrollbar);
+
                 drag.css('opacity', opts.idleOpacity);
                 $pane.wrapInner(content);
                 $pane.append(scrollbar);
