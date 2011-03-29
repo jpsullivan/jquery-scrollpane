@@ -47,7 +47,7 @@
             } else {
                 scrollbar.hide();
             }
-            $pane.unbind('updateDragTop').bind('updateDragTop', function () {
+            $pane.unbind('dragTop').bind('dragTop', function () {
                 var scrollTop = $pane.scrollTop(),
                         top = Math.min(Math.round(scrollTop * ratio), height - drag.height());
                 drag.css('top', top + 'px');
@@ -99,7 +99,7 @@
                     });
                 });
                 $pane.bind('scroll.scrollpane', throttle(function () {
-                    $pane.trigger('updateDragTop');
+                    $pane.trigger('dragTop');
                 }, 10));
                 drag.mousedown(function (event) {
                     $(document).unbind('mousemove.scrollpane');
